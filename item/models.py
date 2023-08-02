@@ -19,8 +19,10 @@ class Item(models.Model):
     name = models.CharField(max_length=255) 
     description = models.TextField(blank=True, null= True)
     price = models.FloatField()
-    created_at = models.ImageField(upload_to = 'product_images', blank=True,null=True)  
+    created_at = models.DateField(auto_now_add=True)
+    image=models.ImageField(upload_to = 'product_images', blank=True,null=True)  
     created_by = models.ForeignKey(User, related_name='items',on_delete=models.CASCADE)
+    is_sold = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name        
